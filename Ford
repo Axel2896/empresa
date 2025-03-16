@@ -1,0 +1,115 @@
+/**
+ * Clase base que representa un vehículo genérico.
+ */
+public class Vehiculo {
+    // Atributos comunes a todos los vehículos
+    private String marca;
+    private String modelo;
+    private int año;
+
+    /**
+     * Constructor de la clase Vehiculo.
+     *
+     * @param marca  La marca del vehículo.
+     * @param modelo El modelo del vehículo.
+     * @param año    El año de fabricación del vehículo.
+     */
+    public Vehiculo(String marca, String modelo, int año) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.año = año;
+    }
+
+    /**
+     * Método para arrancar el vehículo.
+     */
+    public void arrancar() {
+        System.out.println("El vehículo está arrancando.");
+    }
+
+    /**
+     * Método para detener el vehículo.
+     */
+    public void detener() {
+        System.out.println("El vehículo se ha detenido.");
+    }
+
+    // Getters y Setters
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAño() {
+        return año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
+    }
+}
+/**
+ * Clase derivada que representa un coche, heredando de Vehiculo.
+ */
+public class Coche extends Vehiculo {
+    // Atributo único de la clase Coche
+    private int numeroPuertas;
+
+    /**
+     * Constructor de la clase Coche.
+     *
+     * @param marca         La marca del coche.
+     * @param modelo        El modelo del coche.
+     * @param año           El año de fabricación del coche.
+     * @param numeroPuertas El número de puertas del coche.
+     */
+    public Coche(String marca, String modelo, int año, int numeroPuertas) {
+        super(marca, modelo, año);  // Llama al constructor de la clase base (Vehiculo)
+        this.numeroPuertas = numeroPuertas;
+    }
+
+    /**
+     * Método único de la clase Coche para abrir las puertas.
+     */
+    public void abrirPuertas() {
+        System.out.println("Abriendo " + numeroPuertas + " puertas.");
+    }
+
+    /**
+     * Sobrescribe el método arrancar de la clase base.
+     */
+    @Override
+    public void arrancar() {
+        System.out.println("El coche " + getMarca() + " " + getModelo() + " está arrancando con un motor potente.");
+    }
+}
+/**
+ * Clase principal para probar la herencia y los métodos de las clases.
+ */
+public class Main {
+    public static void main(String[] args) {
+        // Crear una instancia de la clase Coche con la marca Ford
+        Coche miCoche = new Coche("Ford", "Mustang", 2022, 2);
+
+        // Usar métodos heredados de la clase base (Vehiculo)
+        System.out.println("Marca: " + miCoche.getMarca());
+        System.out.println("Modelo: " + miCoche.getModelo());
+        System.out.println("Año: " + miCoche.getAño());
+
+        // Usar métodos sobrescritos y únicos de la clase derivada (Coche)
+        miCoche.arrancar();  // Método sobrescrito
+        miCoche.detener();   // Método heredado
+        miCoche.abrirPuertas();  // Método único de la subclase
+    }
+}
